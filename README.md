@@ -1,25 +1,6 @@
 # Perform object detection on a Jetson with ONNX Runtime
 
-1. Download the Yolov4 model from the ONNX model zoo
-
-    ```bash
-    wget https://github.com/onnx/models/blob/master/vision/object_detection_segmentation/yolov4/model/yolov4.onnx
-    ```
-
-2. Download object detection post processing code
-
-    ```bash
-    wget https://github.com/SoloSynth1/tensorflow-yolov4/blob/master/core/config.py
-    wget https://github.com/SoloSynth1/tensorflow-yolov4/blob/master/core/utils.py
-    ```
-
-3. Download one or more test images
-
-    ```bash
-    wget https://github.com/SoloSynth1/tensorflow-yolov4/blob/master/data/kite.jpg
-    ```
-
-4. Create a Dockerfile using the Jetson ONNX Runtime docker image and add application dependencies
+1. Create a `Dockerfile` using the Jetson ONNX Runtime docker image and add application dependencies
 
     ```bash
     FROM mcr.microsoft.com/azureml/onnxruntime:v.1.4.0-jetpack4.4-l4t-base-r32.4.3
@@ -29,10 +10,29 @@
     CMD ["/bin/bash"]
     ```
 
-5. Build a new image from the Dockerfile
+2. Build a new image from the Dockerfile
 
     ```bash
     docker build -t jetson-onnxruntime-yolov4 .
+    ```
+
+3. Download the Yolov4 model from the ONNX model zoo
+
+    ```bash
+    wget https://github.com/onnx/models/blob/master/vision/object_detection_segmentation/yolov4/model/yolov4.onnx?raw=true -O yolov4.onnx
+    ```
+
+4. Download object detection post processing code
+
+    ```bash
+    wget https://raw.githubusercontent.com/SoloSynth1/tensorflow-yolov4/master/core/config.py
+    wget https://raw.githubusercontent.com/SoloSynth1/tensorflow-yolov4/master/core/utils.py
+    ```
+
+5. Download one or more test images
+
+    ```bash
+    wget https://raw.githubusercontent.com/SoloSynth1/tensorflow-yolov4/master/data/kite.jpg
     ```
 
 6. Create an application called `main.py` to preprocess an image, run object detection and display the original image with the detected objects
@@ -107,7 +107,7 @@
 7. Run the application
 
     ```bash
-    docker run -it --rm -v $PWD:/workspace/ --workdir=/workspace/ jetson-onnxruntime-yolov4 "python3 main.py"
+    docker run -it --rm -v $PWD:/workspace/ --workdir=/workspace/ jetson-onnxruntime-yolov4 python3 main.py
     ```
 
 The application reads in the kite image and locates all the objects in the image. You can try it with different images, and extend the application to use a video stream as shown in the Azure IoT edge application above.
