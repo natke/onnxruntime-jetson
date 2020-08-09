@@ -16,13 +16,14 @@
     docker build -t jetson-onnxruntime-yolov4 .
     ```
 
-3. Download the Yolov4 model from the ONNX model zoo
+3. Download the Yolov4 model and the object detection anchor locations from the ONNX model zoo
 
     ```bash
     wget https://github.com/onnx/models/blob/master/vision/object_detection_segmentation/yolov4/model/yolov4.onnx?raw=true -O yolov4.onnx
+    wget https://raw.githubusercontent.com/onnx/models/master/vision/object_detection_segmentation/yolov4/dependencies/yolov4_anchors.txt
     ```
 
-4. Download object detection post processing code
+4. Download the Yolov4 object detection pre and post processing code
 
     ```bash
     wget https://raw.githubusercontent.com/SoloSynth1/tensorflow-yolov4/master/core/config.py
@@ -107,7 +108,7 @@
 7. Run the application
 
     ```bash
-    docker run -it --rm -v $PWD:/workspace/ --workdir=/workspace/ jetson-onnxruntime-yolov4 python3 main.py
+    docker run -it --rm -v $PWD:/workspace/ --workdir=/workspace/ --gpus all jetson-onnxruntime-yolov4 python3 main.py
     ```
 
 The application reads in the kite image and locates all the objects in the image. You can try it with different images, and extend the application to use a video stream as shown in the Azure IoT edge application above.
