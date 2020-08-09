@@ -107,9 +107,7 @@
 7. Run the application
 
     ```bash
-    docker run -it --rm -v $PWD:/workspace/ --workdir=/workspace/ jetson-onnxruntime-yolo main.py
+    docker run -it --rm -v $PWD:/workspace/ --workdir=/workspace/ jetson-onnxruntime-yolov4 "python3 main.py"
     ```
 
 The application reads in the kite image and locates all the objects in the image. You can try it with different images, and extend the application to use a video stream as shown in the Azure IoT edge application above.
-
-
