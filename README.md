@@ -16,18 +16,19 @@
     docker build -t jetson-onnxruntime-yolov4 .
     ```
 
-3. Download the Yolov4 model and the object detection anchor locations from the ONNX model zoo
+3. Download the Yolov4 model, the object detection anchor locations, and class names from the ONNX model zoo
 
     ```bash
     wget https://github.com/onnx/models/blob/master/vision/object_detection_segmentation/yolov4/model/yolov4.onnx?raw=true -O yolov4.onnx
     wget https://raw.githubusercontent.com/onnx/models/master/vision/object_detection_segmentation/yolov4/dependencies/yolov4_anchors.txt
+    wget https://raw.githubusercontent.com/natke/onnxruntime-jetson/master/coco_names.txt
     ```
 
 4. Download the Yolov4 object detection pre and post processing code
 
     ```bash
-    wget https://raw.githubusercontent.com/SoloSynth1/tensorflow-yolov4/master/core/config.py
-    wget https://raw.githubusercontent.com/SoloSynth1/tensorflow-yolov4/master/core/utils.py
+    wget https://raw.githubusercontent.com/natke/onnxruntime-jetson/master/preprocess_yolov4.py
+    wget https://raw.githubusercontent.com/natke/onnxruntime-jetson/master/postprocess_yolov4.py
     ```
 
 5. Download one or more test images
