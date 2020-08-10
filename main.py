@@ -33,5 +33,3 @@ image.save("kite-with-objects.jpg")
 
 
 
-
-
