@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import preprocess_yolov4 as pre
 import postprocess_yolov4 as post
+from PIL import Image
 
 input_size = 416
 
@@ -27,7 +28,7 @@ input_name = sess.get_inputs()[0].name
 detections = sess.run([output_name], {input_name: image_data})[0]
 print("Output shape:", detections.shape)
 
-image = post.image_postprocess(image, image_size, detections)
+image = post.image_postprocess(original_image, input_size, detections)
 
 image = Image.fromarray(image)
 image.show()

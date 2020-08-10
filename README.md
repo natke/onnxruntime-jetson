@@ -21,7 +21,7 @@
     ```bash
     wget https://github.com/onnx/models/blob/master/vision/object_detection_segmentation/yolov4/model/yolov4.onnx?raw=true -O yolov4.onnx
     wget https://raw.githubusercontent.com/onnx/models/master/vision/object_detection_segmentation/yolov4/dependencies/yolov4_anchors.txt
-    wget https://raw.githubusercontent.com/natke/onnxruntime-jetson/master/coco_names.txt
+    wget https://raw.githubusercontent.com/natke/onnxruntime-jetson/master/coco.names
     ```
 
 4. Download the Yolov4 object detection pre and post processing code
