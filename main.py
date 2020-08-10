@@ -15,9 +15,6 @@ image_data = image_data[np.newaxis, ...].astype(np.float32)
 
 print("Preprocessed image shape:",image_data.shape) # shape of the preprocessed input        
 
-from matplotlib.pyplot import imshow
-imshow(np.asarray(original_image))
-
 import onnxruntime as rt
 
 sess = rt.InferenceSession("yolov4.onnx")
@@ -26,14 +23,13 @@ output_name = sess.get_outputs()[0].name
 input_name = sess.get_inputs()[0].name
 
 detections = sess.run([output_name], {input_name: image_data})[0]
+
 print("Output shape:", detections.shape)
 
 image = post.image_postprocess(original_image, input_size, detections)
 
 image = Image.fromarray(image)
-image.show()
-
-imshow(np.asarray(image))
+image.save("kite-with-objects.jpg")
 
 
 
